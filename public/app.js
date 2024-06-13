@@ -30,4 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initialNavState();
     window.addEventListener('resize', initialNavState);
+
+    //Footer
+    const year = document.getElementById('year');
+    const date = new Date();
+    year.innerHTML = date.getFullYear();
 });
