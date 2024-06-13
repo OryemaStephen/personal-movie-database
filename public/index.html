@@ -25,7 +25,19 @@
         </header>
         <main>
             <section id="home" class="home">
-                <h2 class="sticky-header">My Movie Database</h2>
+                <div class="sticky-header">
+                    <h2>My Movie Database</h2>
+                    <div id="movie-filter">
+                        <input type="search" id="search-movie" placeholder="Search list"/>
+                        <div>
+                            <label for="movie-sort">Sort Movies:</label><br>
+                            <select id="movie-sort" name="movie-sort" aria-label="Sort movies">
+                                <option value="Ascending" selected>Ascending</option>
+                                <option value="Descending">Descending</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
                 <ul id="movie-list">Loading</ul>
             </section>
         </main>

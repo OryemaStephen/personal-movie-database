@@ -102,16 +102,31 @@ main{
     position: sticky;
     top: 70px;
     z-index: 2;
-    background-color: #2f80ed;
+    background-color: #151f30;;
     padding: 10px;
     border-radius: 10px;
 }
 
-#search{
-    width: 80%;
+#movie-filter{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+}
+
+#movie-filter input{
     height: 30px;
+    border-radius: 2px;
+    padding-left: 10px;
     border: none;
-    border-radius: 3px;
+    outline: none;
+}
+
+#movie-sort-div select{
+    border: none;
+    outline: none;
 }
 
 /* Footer */
@@ -120,7 +135,7 @@ footer{
     height: 40px;
     position: sticky;
     top: 100vh;
-    background-color: #2f80ed;
+    background-color: #151f30;;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
