@@ -38,9 +38,41 @@ document.addEventListener('DOMContentLoaded', () => {
     year.innerHTML = date.getFullYear();
 
     //Request data
-        const title = document.getElementById('search-movie');
-        title.addEventListener('change', async function getData(){
+    //Access input fields
+    const title = document.getElementById('search-movie');
+    const movieTitle = document.getElementById('movie-title');
+    const movieYear = document.getElementById('movie-year');
+    const movieRating = document.getElementById('movie-rating');
+    const moviePoster = document.getElementById('movie-poster');
+
+    //Get movie from api based on search text
+    title.addEventListener('change', async function getData(){
+        try{
             const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${title.value}`);
-            console.log(response.data);
-        })
+            if (response.data.Response === "True") {
+                const movie = response.data;
+                console.log(movie)
+                movieTitle.value = movie.Title;
+                movieYear.value = movie.Year;
+                moviePoster.src = movie.Poster;
+                moviePoster.style.display = 'block';
+                movieRating.value = movie.imdbRating;
+            } else {
+                alert('Movie not found:', response.data.Error);
+                movieTitle.value = '';
+                movieYear.value = '';
+                movieRating.value = '';
+                moviePoster.src = '';
+                moviePoster.style.display = 'none';
+            }
+        } catch (error) {
+            alert('Error fetching movie details:', error);
+            movieTitle.value = '';
+            movieYear.value = '';
+            movieRating.value = '';
+            moviePoster.src = '';
+            moviePoster.style.display = 'none';
+
+        }
+    })
 });

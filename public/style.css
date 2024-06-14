@@ -12,6 +12,7 @@
 
 html{
     scroll-behavior: smooth;
+    height: 100%;
 }
 
 body{
@@ -19,6 +20,7 @@ body{
     font-family: 'Roboto', sans-serif;
     background-color: #131720;
     color: #ffffff;
+    height: 100%;
 }
 
 header{
@@ -30,7 +32,7 @@ header{
 }
 
 nav{
-    width: 95%;
+    width: 100%;
     height: 100%;
     margin: auto;
     display: flex;
@@ -92,33 +94,36 @@ main{
 .home{
     width: 95%;
     margin:0 auto;
-    height: 90vh;
+    height: fit-content;
     padding-top: 70px;
 }
 
 .sticky-header{
-    width: 98%;
+    width: 100%;
     margin:0 auto 20px auto;
     position: sticky;
     top: 70px;
     z-index: 2;
     background-color: #151f30;;
-    padding: 10px;
+    /* padding: 10px; */
     border-radius: 10px;
 }
 
+.sticky-header h2{
+    padding: 10px;
+}
 #movie-filter{
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
     justify-content: space-between;
     align-items: center;
-    padding-top: 20px;
+    padding: 10px;
 }
 
 #movie-filter input{
+    width: 200px;
     height: 30px;
-    border-radius: 2px;
+    border-radius: 5px;
     padding-left: 10px;
     border: none;
     outline: none;
@@ -129,12 +134,61 @@ main{
     outline: none;
 }
 
+/* Add Movie Page */
+#add-movie-form{
+    width: 100%;
+    background-color: #151f30;
+    height: fit-content;
+    border-radius: 10px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+#add-movie-form > #form-div{
+    width: 100%;
+    margin:10px auto;
+    padding-left: 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+#form-div > div > input{
+    width: 90%;
+    height: 30px;
+    border: none;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+img#movie-poster {
+    margin-top: 10px;
+    max-width: 100%;
+}
+
+#add-movie-form > input{
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#add-movie-form > input:hover{
+    background-color: #ffffff;
+    color: #131720;
+}
+
 /* Footer */
 footer{
     width: 100%;
     height: 40px;
     position: sticky;
-    top: 100vh;
+    bottom: 0;
     background-color: #151f30;;
     display: flex;
     flex-wrap: wrap;
@@ -201,5 +255,15 @@ footer a:hover{
     nav span i:hover,
     nav span i:active{
         color: #ffffff;
+    }
+
+    #add-movie-form > #form-div{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width:480px) {
+    #add-movie-form > #form-div{
+        grid-template-columns: repeat(1, 1fr);
     }
 }
