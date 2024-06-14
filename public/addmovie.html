@@ -12,12 +12,12 @@
     <body>
         <header>
             <nav>
-                <a href="#" class="logo">
+                <a href="./index.html" class="logo">
                     Steph's <em> DB</em>
                 </a>
                 <ul id="navbar">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="./addmovie.html">Add Movies</a></li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="#home">Add Movies</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
                 <span><i id="hamburger" class="fa fa-bars" aria-hidden="true"></i></span>
@@ -26,16 +26,9 @@
         <main>
             <section id="home" class="home">
                 <div class="sticky-header">
-                    <h2>My Movie Database</h2>
+                    <h2>Add A Movie</h2>
                     <div id="movie-filter">
                         <input type="search" id="search-movie" placeholder="Search list"/>
-                        <div id="movie-sort-div">
-                            <label for="movie-sort">Sort Movies:</label><br>
-                            <select id="movie-sort" name="movie-sort" aria-label="Sort movies">
-                                <option value="Ascending" selected>Ascending</option>
-                                <option value="Descending">Descending</option>
-                            </select>
-                        </div>
                     </div>
                 </div>
                 <ul id="movie-list">Loading</ul>
