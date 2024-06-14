@@ -1,3 +1,4 @@
+const apiUrl = `http://www.omdbapi.com/?apikey=6698f446&t`;
 document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.getElementById('hamburger');
     const navBar = document.getElementById('navbar');
@@ -35,4 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const year = document.getElementById('year');
     const date = new Date();
     year.innerHTML = date.getFullYear();
+
+    //Request data
+        const title = document.getElementById('search-movie');
+        title.addEventListener('change', async function getData(){
+            const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${title.value}`);
+            console.log(response.data);
+        })
 });
