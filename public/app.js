@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieYear = document.getElementById('movie-year');
     const movieRating = document.getElementById('movie-rating');
     const moviePoster = document.getElementById('movie-poster');
+    const movieGenre = document.getElementById('movie-genre');
 
     //Get movie from api based on search text
     title.addEventListener('change', async function getData(){
@@ -55,6 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 movieTitle.value = movie.Title;
                 movieYear.value = movie.Year;
                 moviePoster.src = movie.Poster;
+                movieGenre.value = movie.Genre;
                 moviePoster.style.display = 'block';
                 movieRating.value = movie.imdbRating;
             } else {
@@ -62,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 movieTitle.value = '';
                 movieYear.value = '';
                 movieRating.value = '';
+                movieGenre.value = '';
                 moviePoster.src = '';
                 moviePoster.style.display = 'none';
             }
@@ -70,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             movieTitle.value = '';
             movieYear.value = '';
             movieRating.value = '';
+            movieGenre.value = '';
             moviePoster.src = '';
             moviePoster.style.display = 'none';
 

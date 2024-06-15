@@ -105,7 +105,6 @@ main{
     top: 70px;
     z-index: 2;
     background-color: #151f30;;
-    /* padding: 10px; */
     border-radius: 10px;
 }
 
@@ -188,7 +187,7 @@ footer{
     width: 100%;
     height: 40px;
     position: sticky;
-    bottom: 0;
+    top: 90vh;
     background-color: #151f30;;
     display: flex;
     flex-wrap: wrap;
