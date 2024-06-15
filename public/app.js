@@ -39,6 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //Request data
     //Access input fields
+    const searchMovie = document.getElementById('search');
     const title = document.getElementById('search-movie');
     const movieTitle = document.getElementById('movie-title');
     const movieYear = document.getElementById('movie-year');
@@ -46,10 +47,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviePoster = document.getElementById('movie-poster');
     const movieGenre = document.getElementById('movie-genre');
 
-    //Get movie from api based on search text
-    title.addEventListener('change', async function getData(){
+    //Get movie from api based on input text
+    searchMovie.addEventListener('click', async function getData(){
         try{
             const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${title.value}`);
+            //If request is successful
             if (response.data.Response === "True") {
                 const movie = response.data;
                 console.log(movie)

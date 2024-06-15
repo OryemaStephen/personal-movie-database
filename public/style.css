@@ -114,18 +114,33 @@ main{
 #movie-filter{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 10px;
     align-items: center;
     padding: 10px;
 }
 
-#movie-filter input{
+#movie-filter input:first-child{
     width: 200px;
     height: 30px;
     border-radius: 5px;
     padding-left: 10px;
     border: none;
     outline: none;
+}
+
+#movie-filter #search{
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#movie-filter #search:hover{
+    background-color: #2f80ed;
+    color: #ffffff;
 }
 
 #movie-sort-div select{
@@ -187,12 +202,13 @@ footer{
     width: 100%;
     height: 40px;
     position: sticky;
-    top: 90vh;
+    top: 100vh;
     background-color: #151f30;;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-top: 20px;
 }
 
 footer a{
@@ -202,7 +218,7 @@ footer a{
 }
 
 footer a:hover{
-    color: #131720;
+    color: #2f80ed;
 }
 
 @media screen and (max-width: 768px) {

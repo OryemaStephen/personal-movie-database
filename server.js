@@ -1,11 +1,16 @@
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
+const axios = require('axios');
+const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
@@ -15,10 +20,7 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
+// Route to get all movies
 app.get('/movies', (req, res) => {
   pool.query('SELECT * FROM movies', (error, results) => {
     if (error) {
@@ -28,6 +30,40 @@ app.get('/movies', (req, res) => {
       res.json(results);
     }
   });
+});
+
+// Route to post a new movie
+app.post('/movies', async (req, res) => {
+  const { title } = req.body;
+
+  try {
+    const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${title}`);
+    if (response.data.Response === "True") {
+      const movie = response.data;
+      pool.query(
+        'INSERT INTO movies (title, year, imdbRating, poster, genre) VALUES (?, ?, ?, ?, ?)',
+        [movie.Title, movie.Year, movie.imdbRating, movie.Poster, movie.Genre],
+        (error, results) => {
+          if (error) {
+            console.error(error);
+            res.status(500).send('Database error');
+          } else {
+            res.status(200).send('Movie saved successfully');
+          }
+        }
+      );
+    } else {
+      res.status(404).send('Movie not found');
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Error fetching movie details');
+  }
+});
+
+// Serve the index.html file for the root URL
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.listen(port, () => {
