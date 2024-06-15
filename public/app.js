@@ -81,4 +81,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
         }
     })
+
+    //Add movie to the database
+    const addMovieButton = document.getElementById('add-movie-btn');
+    addMovieButton.addEventListener('click', async function addMovie(){
+        try{
+            const movie = {
+                title: movieTitle.value,
+                year: movieYear.value,
+                imdbRating: movieRating.value,
+                genre: movieGenre.value,
+                poster: moviePoster.src,
+            }
+
+            const response = await axios.post('/movies', movie);
+            if (response.status === 200) {
+                alert('Movie added to database successfully');
+            } else {
+                alert('Error adding movie');
+            }
+        } catch (error) {
+            alert('Error adding movie:', error);
+        }
+    })
 });
