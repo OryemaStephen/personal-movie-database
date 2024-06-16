@@ -34,10 +34,10 @@ app.get('/movies', (req, res) => {
 
 // Route to post a new movie
 app.post('/movies', async (req, res) => {
-  const { title } = req.body;
+  const { searchTitle } = req.body;
 
   try {
-    const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${title}`);
+    const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${searchText}`);
     if (response.data.Response === "True") {
       const movie = response.data;
       pool.query(
@@ -67,5 +67,5 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+  console.log(`Server is running on port http://localhost:${port}`);
 });

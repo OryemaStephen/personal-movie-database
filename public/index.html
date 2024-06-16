@@ -29,7 +29,7 @@
                 <div class="sticky-header">
                     <h2>My Movie Database</h2>
                     <div id="movie-filter">
-                        <input type="search" id="search-movie" placeholder="Search list"/>
+                        <input type="search" id="filter-movie" placeholder="Search list"/>
                         <div id="movie-sort-div">
                             <label for="movie-sort">Sort Movies:</label><br>
                             <select id="movie-sort" name="movie-sort" aria-label="Sort movies">
@@ -39,13 +39,15 @@
                         </div>
                     </div>
                 </div>
-                <ul id="movie-list">Loading</ul>
+                <div id="movie-container">
+                    <div id="movie-list"></div>
+                </div>
             </section>
         </main>
         <footer>
             <span>&copy;<span id="year"></span> Developed By </span>
-            <a href="https://oryemasteph.netlify.app"> Steph</a>
+            <a href="https://oryemasteph.netlify.app"> Stephen Oryema</a>
         </footer>     
-        <script src="app.js"></script>
+        <script src="app.js" defer></script>
     </body>
 </html>
