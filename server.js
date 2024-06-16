@@ -34,30 +34,27 @@ app.get('/movies', (req, res) => {
 
 // Route to post a new movie
 app.post('/movies', async (req, res) => {
-  const { searchTitle } = req.body;
+  const { title, year, imdbRating, poster, genre } = req.body;
 
   try {
-    const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${searchText}`);
-    if (response.data.Response === "True") {
-      const movie = response.data;
+      // Validate inputs if necessary
+      // Insert movie into the database
       pool.query(
-        'INSERT INTO movies (title, year, imdbRating, poster, genre) VALUES (?, ?, ?, ?, ?)',
-        [movie.Title, movie.Year, movie.imdbRating, movie.Poster, movie.Genre],
-        (error, results) => {
-          if (error) {
-            console.error(error);
-            res.status(500).send('Database error');
-          } else {
-            res.status(200).send('Movie saved successfully');
+          'INSERT INTO movies (title, year, imdbRating, poster, genre) VALUES (?, ?, ?, ?, ?)',
+          [title, year, imdbRating, poster, genre],
+          (error, results) => {
+              if (error) {
+                  console.error('Error inserting movie:', error);
+                  res.status(500).send('Database error');
+              } else {
+                  console.log('Movie added successfully:', results);
+                  res.status(200).send('Movie saved successfully');
+              }
           }
-        }
       );
-    } else {
-      res.status(404).send('Movie not found');
-    }
   } catch (error) {
-    console.error(error);
-    res.status(500).send('Error fetching movie details');
+      console.error('Error adding movie:', error);
+      res.status(500).send('Error adding movie');
   }
 });
 

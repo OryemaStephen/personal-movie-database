@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    //Access elements
+    // Access elements
     const hamburger = document.getElementById('hamburger');
     const navBar = document.getElementById('navbar');
     const movieList = document.getElementById('movie-list');
@@ -10,9 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieRating = document.getElementById('movie-rating');
     const moviePoster = document.getElementById('movie-poster');
     const movieGenre = document.getElementById('movie-genre');
+    const addMovieButton = document.getElementById('add-movie-btn');
 
-    //Navigation menu
-    //Display or hide nav items and hamburger
+    // Navigation menu functions
     function toggleNavMenu(){
         if (navBar.style.display === 'block') {
             navBar.style.display = 'none';
@@ -23,11 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
             hamburger.classList.remove('fa-bars');
             hamburger.classList.add('fa-times');
         }
-    };
+    }
 
-    hamburger.addEventListener('click', toggleNavMenu);
+    hamburger?.addEventListener('click', toggleNavMenu);
 
-    // Initial Nav state
     function initialNavState(){
         if (window.innerWidth <= 768) {
             navBar.style.display = 'none';
@@ -36,26 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
             navBar.style.display = 'flex';
             hamburger.classList.remove('fa-bars', 'fa-times');
         }
-    };
+    }
 
     initialNavState();
     window.addEventListener('resize', initialNavState);
 
-    //Footer
     const year = document.getElementById('year');
-    const date = new Date();
-    year.innerHTML = date.getFullYear();
+    if (year) {
+        const date = new Date();
+        year.innerHTML = date.getFullYear();
+    }
 
-    //Request data    
-    //Get movie from api based on input text
-    if(searchTitle){
-        searchTitle.addEventListener('click', async function getData(){
-            try{
+    // Search movie from API based on the title
+    if (searchTitle) {
+        searchTitle.addEventListener('click', async function getData() {
+            try {
                 const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${searchText.value}`);
-                //If request is successful
+                // If request is successful
                 if (response.data.Response === "True") {
                     const movie = response.data;
-                    console.log(movie)
+                    console.log(movie);
                     movieTitle.value = movie.Title;
                     movieYear.value = movie.Year;
                     movieGenre.value = movie.Genre;
@@ -63,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     moviePoster.style.display = 'block';
                     movieRating.value = movie.imdbRating;
                 } else {
-                    alert('Movie not found:', response.data.Error);
+                    alert('Movie not found: ' + response.data.Error);
                     movieTitle.value = '';
                     movieYear.value = '';
                     movieRating.value = '';
@@ -72,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     moviePoster.style.display = 'none';
                 }
             } catch (error) {
-                alert('Error fetching movie details:', error);
+                alert('Error fetching movie details: ' + error);
                 movieTitle.value = '';
                 movieYear.value = '';
                 movieRating.value = '';
@@ -80,39 +79,52 @@ document.addEventListener('DOMContentLoaded', () => {
                 moviePoster.src = '';
                 moviePoster.style.display = 'none';
             }
-        })
-    
+        });
     }
-    //Add movie to the database
-    const addMovieButton = document.getElementById('add-movie-btn');
-    if(addMovieButton){
-        addMovieButton.addEventListener('click', async function addMovie(){
-            try{
+
+    // Add movie to the database
+    if (addMovieButton) {
+        addMovieButton.addEventListener('click', async function addMovie(event) {
+            // Prevent the form from submitting
+            event.preventDefault(); 
+
+            try {
                 const movie = {
                     title: movieTitle.value,
                     year: movieYear.value,
                     imdbRating: movieRating.value,
                     genre: movieGenre.value,
                     poster: moviePoster.src,
-                }
-    
+                };
+
                 const response = await axios.post('/movies', movie);
                 if (response.status === 200) {
                     alert('Movie added to database successfully');
+                     // Reset form fields when movie is added
+                    movieTitle.value = '';
+                    movieYear.value = '';
+                    movieRating.value = '';
+                    movieGenre.value = '';
+                    moviePoster.src = '';
+                    moviePoster.style.display = 'none';
+
+                    //Reopen homepage
+                    window.location.href = '/index.html';
                 } else {
                     alert('Error adding movie');
                 }
             } catch (error) {
-                alert('Error adding movie:', error);
+                alert('Error adding movie: ' + error);
             }
-            getMovies();
-        })
-    
+            if (movieList) {
+                getMovies();
+            }
+        });
     }
-    //Get all movies
+
+    // Get all movies
     async function getMovies() {
         try {
-            console.log('Fetching movies...');
             const response = await axios.get('/movies');
             console.log(response.data);
             if (response.status === 200) {
@@ -134,9 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error fetching movies');
             }
         } catch (error) {
-            alert('Error fetching movies:', error);
+            alert('Error fetching movies: ' + error);
         }
     }
+
     if (movieList) {
         getMovies();
     }
