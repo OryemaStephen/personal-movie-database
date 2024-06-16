@@ -134,11 +134,15 @@ document.addEventListener('DOMContentLoaded', () => {
                     const movieItem = document.createElement('div');
                     movieItem.className = 'movie-item';
                     movieItem.innerHTML = `
-                        <h3>${movie.title}</h3>
-                        <p>Year: ${movie.year}</p>
-                        <p>IMDB Rating: ${movie.imdbRating}</p>
-                        <p>Genre: ${movie.genre}</p>
-                        <img src="${movie.poster}" alt="${movie.title}" style="width: 100px;">
+                        <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                        <div class="movie-details">
+                            <h3 class="title">${movie.title}</h3>
+                            <div class="movie-label">
+                                <p class="year"> ${movie.year}</p>
+                                <p class="genre"> ${movie.genre.split(',')[0]}</p>
+                                <p class="rating"> ${movie.imdbRating}</p>
+                            </div>
+                        </div>                        
                     `;
                     movieList.appendChild(movieItem);
                 });
