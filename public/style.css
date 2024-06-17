@@ -262,6 +262,38 @@ img#movie-poster {
     font-size: 1.1rem;
 }
 
+#load-movies{
+    width: 100%;
+    text-align: center;
+}
+
+
+#load-movie-button{
+    margin-left: 10px;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #2f80ed;
+    color: #ffffff;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#load-movie-button:hover{
+    background-color: #ffffff;
+    color: #131720;
+}
+
+/* Contact */
+#contact{
+    width: 95%;
+    margin:0 auto;
+    height: fit-content;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 /* Footer */
 footer{
     width: 100%;
@@ -273,7 +305,6 @@ footer{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
 }
 
 footer a{

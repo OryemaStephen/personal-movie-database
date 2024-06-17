@@ -117,19 +117,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Error adding movie: ' + error);
             }
             if (movieList) {
-                getMovies();
+                getTop10Movies();
             }
         });
     }
 
     // Get all movies
-    async function getMovies() {
+    const numberOfMovies = 10;
+    async function getTop10Movies() {
         try {
             const response = await axios.get('/movies');
             if (response.status === 200) {
                 const movies = response.data;
                 movieList.innerHTML = ''; 
-                movies.forEach(movie => {
+                movies.forEach((movie,index) => {
+                    if(index<numberOfMovies){
+                        const movieItem = document.createElement('div');
+                        movieItem.className = 'movie-item';
+                        movieItem.innerHTML = `
+                            <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                            <div class="movie-details">
+                                <h3 class="title">${movie.title}</h3>
+                                <div class="movie-label">
+                                    <span class="year"> ${movie.year}</span>
+                                    <span class="genre"> ${movie.genre.split(',')[0]}</span>
+                                    <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
+                                </div>
+                            </div>                        
+                        `;
+                        movieList.appendChild(movieItem);
+                    }
+                });
+            } else {
+                alert('Error fetching movies');
+            }
+        } catch (error) {
+            alert('Error fetching movies: ' + error);
+        }
+    }
+
+    if (movieList) {
+        getTop10Movies();
+    }
+
+    //Get All movies
+    const LoadMovieButton = document.getElementById('load-movie-button');
+    async function getAllMovies() {
+        try {
+            const response = await axios.get('/movies');
+            if (response.status === 200) {
+                const movies = response.data;
+                movieList.innerHTML = ''; 
+                movies.forEach((movie) => {
                     const movieItem = document.createElement('div');
                     movieItem.className = 'movie-item';
                     movieItem.innerHTML = `
@@ -154,6 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (movieList) {
-        getMovies();
+        LoadMovieButton.addEventListener('click', getAllMovies);
     }
 });
