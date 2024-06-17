@@ -138,9 +138,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="movie-details">
                             <h3 class="title">${movie.title}</h3>
                             <div class="movie-label">
-                                <p class="year"> ${movie.year}</p>
-                                <p class="genre"> ${movie.genre.split(',')[0]}</p>
-                                <p class="rating"> ${movie.imdbRating}</p>
+                                <span class="year"> ${movie.year}</span>
+                                <span class="genre"> ${movie.genre.split(',')[0]}</span>
+                                <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                             </div>
                         </div>                        
                     `;
