@@ -126,7 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
     async function getMovies() {
         try {
             const response = await axios.get('/movies');
-            console.log(response.data);
             if (response.status === 200) {
                 const movies = response.data;
                 movieList.innerHTML = ''; 
