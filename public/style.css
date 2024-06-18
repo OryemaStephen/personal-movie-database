@@ -41,7 +41,7 @@ nav{
     padding: 0 20px;
 }
 
-nav .logo{
+.logo{
     width: 30%;
     color: #ffffff;
     display: flex;
@@ -51,7 +51,7 @@ nav .logo{
     font-size: 1.6rem;
 }
 
-nav .logo em{
+.logo em{
     color: #2f80ed;
     padding-left: 10px;
 }
@@ -293,6 +293,71 @@ img#movie-poster {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+#contact > div{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:flex-start;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#contact > div > #contact-detail{
+    font-size: 0.9rem;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#contact > div > #contact-detail>h4> a{
+    padding-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+#contact > div > #contact-detail p{
+    padding-bottom: 10px;
+}
+
+#contact > div > #contact-detail div{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#contact > div >#bottom-menu-links{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#contact > div > #contact-detail > div >a{
+    text-decoration: none;
+    font-size: 1.1rem;
+    color: #2f80ed;
+}
+
+#contact > div > #contact-detail > div >a:hover{
+    color: #ffffff;
+}
+
+#contact > div >#bottom-menu-links > h4 >a{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+#contact > div >#bottom-menu-links > a{
+    text-decoration: none;
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+#contact > div >#bottom-menu-links > a:hover{
+    color: #2f80ed;
+}
+
+
 
 /* Footer */
 footer{
