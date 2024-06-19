@@ -141,6 +141,8 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="movie-label">
                                     <span class="year"> ${movie.year}</span>
                                     <span class="genre"> ${movie.genre.split(',')[0]}</span>
+                                    <button id="edit-movie">Edit</button>
+                                    <button id="delete-movie">Delete</button>
                                     <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                                 </div>
                             </div>                        
@@ -178,6 +180,8 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="movie-label">
                                 <span class="year"> ${movie.year}</span>
                                 <span class="genre"> ${movie.genre.split(',')[0]}</span>
+                                <button id="edit-movie">Edit</button>
+                                <button id="delete-movie">Delete</button>
                                 <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                             </div>
                         </div>                        
