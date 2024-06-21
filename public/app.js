@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviePoster = document.getElementById('movie-poster');
     const movieGenre = document.getElementById('movie-genre');
     const addMovieButton = document.getElementById('add-movie-btn');
+    const filterMovie = document.getElementById('filter-movie')
     
     // Toggle menu hamburger
     function toggleNavMenu(){
@@ -231,5 +232,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 
             });
         });
-    }    
+    } 
+    
+    // Filter movies based on user input text
+    function filterMovies() {
+        const filterText = filterMovie.value.toLowerCase();
+        const movieItems = document.querySelectorAll('.movie-item');
+
+        movieItems.forEach(movieItem => {
+            const title = movieItem.querySelector('.title').textContent.toLowerCase();
+            const year = movieItem.querySelector('.year').textContent.toLowerCase();
+            const genre = movieItem.querySelector('.genre').textContent.toLowerCase();
+
+            if (title.includes(filterText) || year.includes(filterText) || genre.includes(filterText)) {
+                movieItem.style.display = 'block';
+            } else {
+                movieItem.style.display = 'none';
+            }
+        });
+    }
+
+    if (filterMovie) {
+        filterMovie.addEventListener('input', filterMovies);
+    }
 });
