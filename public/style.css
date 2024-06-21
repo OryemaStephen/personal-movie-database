@@ -274,22 +274,22 @@ img#movie-poster {
     display: inline;
 }
 
-.movie-label > #edit-movie{
+.movie-label > .edit-movie{
     background-color: #2f80ed;
     color: #ffffff;
 }
 
-.movie-label > #edit-movie:hover{
+.movie-label > .edit-movie:hover{
     background-color: #ffffff;
     color: #131720;
 }
 
-.movie-label > #delete-movie{
+.movie-label > .delete-movie{
     background-color: #9a533f;
     color: #ffffff;
 }
 
-.movie-label > #delete-movie:hover{
+.movie-label > .delete-movie:hover{
     background-color: #ffffff;
     color: #131720;
 }

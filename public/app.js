@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviePoster = document.getElementById('movie-poster');
     const movieGenre = document.getElementById('movie-genre');
     const addMovieButton = document.getElementById('add-movie-btn');
-
+    
     // Navigation menu functions
     function toggleNavMenu(){
         if (navBar.style.display === 'block') {
@@ -141,8 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="movie-label">
                                     <span class="year"> ${movie.year}</span>
                                     <span class="genre"> ${movie.genre.split(',')[0]}</span>
-                                    <button id="edit-movie">Edit</button>
-                                    <button id="delete-movie">Delete</button>
+                                    <button type="button" class="delete-movie">Delete</button>
                                     <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                                 </div>
                             </div>                        
@@ -163,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     //Get All movies
-    const LoadMovieButton = document.getElementById('load-movie-button');
+    const loadMovieButton = document.getElementById('load-movie-button');
     async function getAllMovies() {
         try {
             const response = await axios.get('/movies');
@@ -180,8 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="movie-label">
                                 <span class="year"> ${movie.year}</span>
                                 <span class="genre"> ${movie.genre.split(',')[0]}</span>
-                                <button id="edit-movie">Edit</button>
-                                <button id="delete-movie">Delete</button>
+                                <button type="button" class="delete-movie">Delete</button>
                                 <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                             </div>
                         </div>                        
@@ -197,6 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (movieList) {
-        LoadMovieButton.addEventListener('click', getAllMovies);
+        loadMovieButton.addEventListener('click', getAllMovies);
     }
 });
