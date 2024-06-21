@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const movieGenre = document.getElementById('movie-genre');
     const addMovieButton = document.getElementById('add-movie-btn');
     
-    // Navigation menu functions
+    // Toggle menu hamburger
     function toggleNavMenu(){
         if (navBar.style.display === 'block') {
             navBar.style.display = 'none';
@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="movie-label">
                                     <span class="year"> ${movie.year}</span>
                                     <span class="genre"> ${movie.genre.split(',')[0]}</span>
-                                    <button type="button" class="delete-movie">Delete</button>
+                                    <button data-id="${movie.id}" type="button" class="delete-movie">Delete</button>
                                     <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                                 </div>
                             </div>                        
@@ -149,6 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         movieList.appendChild(movieItem);
                     }
                 });
+                deleteItem();
             } else {
                 alert('Error fetching movies');
             }
@@ -179,13 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             <div class="movie-label">
                                 <span class="year"> ${movie.year}</span>
                                 <span class="genre"> ${movie.genre.split(',')[0]}</span>
-                                <button type="button" class="delete-movie">Delete</button>
+                                <button data-id="${movie.id}" type="button" class="delete-movie">Delete</button>
                                 <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                             </div>
                         </div>                        
                     `;
                     movieList.appendChild(movieItem);
                 });
+                deleteItem();
             } else {
                 alert('Error fetching movies');
             }
@@ -197,4 +199,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (movieList) {
         loadMovieButton.addEventListener('click', getAllMovies);
     }
+
+    //Delete movie
+     function deleteItem() {
+        //Access delete buttons
+        const deleteButtons = document.querySelectorAll('.delete-movie');
+
+        //Access the movie with the clicked delete button
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', async function() {
+                const movieId = this.getAttribute('data-id');
+                const isConfirmed = confirm('Are you sure you want to delete this movie?');
+
+                //Delete movie when user clicked ok for the confirm prompt
+                if(isConfirmed){
+                    try {
+                        const response = await axios.delete(`/movies/${movieId}`);
+                        if (response.status === 200) {
+                            alert('Movie deleted successfully');
+                            // Refresh the movie list after deletion
+                            getAllMovies();
+                        } else {
+                            alert('Error deleting movie');
+                        }
+                    } catch (error) {
+                        alert('Error deleting movie: ' + error);
+                    }
+                } else{
+                    alert('Movie deletion cancelled')
+                }
+                
+            });
+        });
+    }    
 });

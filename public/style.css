@@ -268,25 +268,18 @@ img#movie-poster {
     padding: 2px 5px;
     border: none;
     border-radius: 2px;
+    transition: all 0.3s ease;
 }
 
 .movie-item:hover button{
     display: inline;
 }
 
-.movie-label > .edit-movie{
-    background-color: #2f80ed;
-    color: #ffffff;
-}
-
-.movie-label > .edit-movie:hover{
-    background-color: #ffffff;
-    color: #131720;
-}
 
 .movie-label > .delete-movie{
     background-color: #9a533f;
     color: #ffffff;
+    transition: all 0.3s ease;
 }
 
 .movie-label > .delete-movie:hover{

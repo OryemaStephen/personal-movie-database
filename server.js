@@ -6,13 +6,14 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-//Middleware
+// Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Database connection pool
 const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
@@ -33,30 +34,66 @@ app.get('/movies', (req, res) => {
   });
 });
 
+// Get a movie by ID
+app.get('/movies/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(`Received request to get movie with ID: ${id}`);
+
+  pool.query('SELECT * FROM movies WHERE id = ?', [id], (error, results) => {
+    if (error) {
+      console.error('Error fetching movie:', error);
+      res.status(500).send('Database error');
+    } else if (results.length === 0) {
+      console.log(`Movie with ID: ${id} not found`);
+      res.status(404).send('Movie not found');
+    } else {
+      console.log(`Movie with ID: ${id} fetched successfully`);
+      res.status(200).json(results[0]);
+    }
+  });
+});
+
 // Route to post a new movie
 app.post('/movies', async (req, res) => {
   const { title, year, imdbRating, poster, genre } = req.body;
 
   try {
-      // Validate inputs if necessary
-      // Insert movie into the database
-      pool.query(
-          'INSERT INTO movies (title, year, imdbRating, poster, genre) VALUES (?, ?, ?, ?, ?)',
-          [title, year, imdbRating, poster, genre],
-          (error, results) => {
-              if (error) {
-                  console.error('Error inserting movie:', error);
-                  res.status(500).send('Database error');
-              } else {
-                  console.log('Movie added successfully:', results);
-                  res.status(200).send('Movie saved successfully');
-              }
-          }
-      );
+    // Validate inputs if necessary
+    // Insert movie into the database
+    pool.query(
+      'INSERT INTO movies (title, year, imdbRating, poster, genre) VALUES (?, ?, ?, ?, ?)',
+      [title, year, imdbRating, poster, genre],
+      (error, results) => {
+        if (error) {
+          console.error('Error inserting movie:', error);
+          res.status(500).send('Database error');
+        } else {
+          console.log('Movie added successfully:', results);
+          res.status(200).send('Movie saved successfully');
+        }
+      }
+    );
   } catch (error) {
-      console.error('Error adding movie:', error);
-      res.status(500).send('Error adding movie');
+    console.error('Error adding movie:', error);
+    res.status(500).send('Error adding movie');
   }
+});
+
+// Route to delete a movie
+app.delete('/movies/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(`Deleting movie with ID: ${id}`);
+
+  pool.query('DELETE FROM movies WHERE id = ?', [id], (error, results) => {
+    if (error) {
+      console.error('Error deleting movie:', error);
+      res.status(500).send('Database error');
+    } else if (results.affectedRows === 0) {
+      res.status(404).send('Movie not found');
+    } else {
+      res.status(200).send('Movie deleted successfully');
+    }
+  });
 });
 
 // Serve the index.html file for the root URL
