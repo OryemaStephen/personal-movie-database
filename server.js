@@ -1,13 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const mysql = require('mysql2');
-const axios = require('axios');
 const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
+//Middleware
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
