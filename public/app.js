@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     } 
     
-    // Filter movies based on user input text
+    // Filter movies based on title, year and genre
     function filterMovies() {
         const filterText = filterMovie.value.toLowerCase();
         const movieItems = document.querySelectorAll('.movie-item');
@@ -253,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    //Filter movies when user enters a value
     if (filterMovie) {
         filterMovie.addEventListener('input', filterMovies);
     }
@@ -280,10 +281,9 @@ document.addEventListener('DOMContentLoaded', () => {
         items.forEach(item => movieList.appendChild(item));
     }
 
+    //Sort movies when the option is selected
     if (movieSort) {
         movieSort.addEventListener('change', sortItems);
     }
 
-    // Initial call to populate movies
-    getAllMovies();
 });
