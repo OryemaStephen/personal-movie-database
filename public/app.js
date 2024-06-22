@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (searchTitle) {
         searchTitle.addEventListener('click', async function getData() {
             try {
-                const response = await axios.get(`http://www.omdbapi.com/?apikey=6698f446&t=${searchText.value}`);
+                const response = await axios.get(`https://www.omdbapi.com/?apikey=6698f446&t=${searchText.value}`);
                 // If request is successful
                 if (response.data.Response === "True") {
                     const movie = response.data;
