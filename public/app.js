@@ -56,7 +56,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 // If request is successful
                 if (response.data.Response === "True") {
                     const movie = response.data;
+
                     console.log(movie);
+                    
                     movieTitle.value = movie.Title;
                     movieYear.value = movie.Year;
                     movieGenre.value = movie.Genre;
