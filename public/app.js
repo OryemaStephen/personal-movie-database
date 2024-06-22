@@ -11,7 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const moviePoster = document.getElementById('movie-poster');
     const movieGenre = document.getElementById('movie-genre');
     const addMovieButton = document.getElementById('add-movie-btn');
-    const filterMovie = document.getElementById('filter-movie')
+    const filterMovie = document.getElementById('filter-movie');
+    const movieSort = document.getElementById('movie-sort');
     
     // Toggle menu hamburger
     function toggleNavMenu(){
@@ -255,4 +256,34 @@ document.addEventListener('DOMContentLoaded', () => {
     if (filterMovie) {
         filterMovie.addEventListener('input', filterMovies);
     }
+
+     // Sort movies based on the selected sort option
+     function sortItems() {
+        const sortOrder = movieSort.value;
+        const items = Array.from(movieList.children);
+
+        items.sort((a, b) => {
+            const titleA = a.querySelector('.title').textContent.toLowerCase();
+            const titleB = b.querySelector('.title').textContent.toLowerCase();
+
+            switch (sortOrder) {
+                case 'ascending':
+                    return titleA.localeCompare(titleB);
+                case 'descending':
+                    return titleB.localeCompare(titleA);
+                default:
+                    return 0;
+            }
+        });
+
+        movieList.innerHTML = '';
+        items.forEach(item => movieList.appendChild(item));
+    }
+
+    if (movieSort) {
+        movieSort.addEventListener('change', sortItems);
+    }
+
+    // Initial call to populate movies
+    getAllMovies();
 });
