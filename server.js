@@ -24,7 +24,7 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT
 });
 
-//Test database connection
+//Test database
 app.get('/test-db', (req, res) => {
   pool.query('SELECT 1', (error, results) => {
     if (error) {
