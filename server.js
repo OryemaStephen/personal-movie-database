@@ -24,6 +24,18 @@ const pool = mysql.createPool({
   port: process.env.DB_PORT
 });
 
+//Test database connection
+app.get('/test-db', (req, res) => {
+  pool.query('SELECT 1', (error, results) => {
+    if (error) {
+      console.error('Database connection test failed:', error);
+      return res.status(500).send('Database connection test failed');
+    } else {
+      return res.status(200).send('Database connection test succeeded');
+    }
+  });
+});
+
 // Route to get all movies
 app.get('/movies', (req, res) => {
   pool.query('SELECT * FROM movies', (error, results) => {
