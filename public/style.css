@@ -143,10 +143,21 @@ main{
     color: #ffffff;
 }
 
+#movie-sort-div label{
+    font-size: 0.7rem;
+}
+
+#movie-sort-div > select > option{
+    font-size: 0.7rem;
+}
+
 #movie-sort-div select{
     border: none;
     outline: none;
+    font-size: 0.7rem;
 }
+
+
 
 /* Add Movie Page */
 #add-movie-form{
