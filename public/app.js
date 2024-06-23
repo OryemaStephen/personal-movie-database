@@ -101,6 +101,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     poster: moviePoster.src,
                 };
 
+                console.log(typeof movie.title);
+                console.log(typeof movie.year);
+                console.log(typeof movie.imdbRating);
+                console.log(typeof movie.genre);
+                console.log(typeof movie.poster);
+
                 const response = await axios.post('/movies', movie);
                 if (response.status === 200) {
                     alert('Movie added to database successfully');

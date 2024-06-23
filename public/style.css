@@ -263,7 +263,6 @@ img#movie-poster {
 }
 
 .movie-label > button{
-    display: none;
     cursor: pointer;
     padding: 2px 5px;
     border: none;
