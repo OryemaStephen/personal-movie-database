@@ -69,8 +69,8 @@ Ready features
 - Responsiveness on different screen sizes
 
 ## Screenshots
-![image](./images/img_11.png)
-![image](./images/img_12.png)
+![image](./image/desktop_view.png)
+![image](./image/add_movie.png)
 
 ## Room for Improvement
 
