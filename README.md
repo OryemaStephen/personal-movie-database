@@ -5,11 +5,13 @@
   - [Table of Content](#table-of-content)
   - [Overview](#overview)
   - [Objective](#objective)
+  - [Demo Links](#demo-links)
   - [Usage](#usage)
   - [Technologies Used](#technologies-used)
     - [1. Backend Dependencies](#1-backend-dependencies)
     - [2. Frontend Dependencies](#2-frontend-dependencies)
   - [Features](#features)
+  - [Screenshots](#screenshots)
   - [Room for Improvement](#room-for-improvement)
   - [Project Status](#project-status)
   - [Contact](#contact)
@@ -19,6 +21,10 @@ To graduate from the Tunga Impact Academy BootCamp, it is a requirement to devel
 
 ## Objective
 Develop a software application for adding and displaying favorite personal movies.
+
+## Demo Links
+* [Frontend-Web App](https://personal-movie-database-production.up.railway.app/)
+* [Backend-API](https://personal-movie-database-production.up.railway.app/movies)
 
 ## Usage
 1. Clone the repo using
@@ -62,6 +68,10 @@ Ready features
 - Confirmation prompts when deleting movies
 - Responsiveness on different screen sizes
 
+## Screenshots
+![image](./images/img_11.png)
+![image](./images/img_12.png)
+
 ## Room for Improvement
 
 Room for improvement:
@@ -71,4 +81,4 @@ Room for improvement:
 Project is: _in progress_ 
 
 ## Contact
-[oryemasteve9@gmail.com]
+Contact me on <oryemasteve9@gmail.com>
