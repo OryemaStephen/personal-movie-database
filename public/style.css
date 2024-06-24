@@ -81,8 +81,8 @@ nav ul li a{
     color: #2f80ed;
 }
 
-nav ul li a:hover,
-nav ul li a:active{
+nav ul li:hover a,
+nav ul li.active a{
     color: #ffffff;
 }
 
@@ -463,6 +463,9 @@ footer a:hover{
         padding-bottom: 10px;
     }
 
+    nav ul li:hover a{
+        color: #ffffff;
+    }
     nav ul li:hover,
     nav ul li a:hover,
     nav ul li a:active{

@@ -13,6 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const addMovieButton = document.getElementById('add-movie-btn');
     const filterMovie = document.getElementById('filter-movie');
     const movieSort = document.getElementById('movie-sort');
+
+    //Highlighting menu item on click
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item=>{
+        item.addEventListener('click', ()=>{
+            navItems.forEach(nav=>nav.classList.remove('active'));
+            item.classList.add('active')
+        })
+    })
     
     // Toggle menu hamburger
     function toggleNavMenu(){
@@ -57,8 +66,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (response.data.Response === "True") {
                     const movie = response.data;
 
-                    console.log(movie);
-                    
                     movieTitle.value = movie.Title;
                     movieYear.value = movie.Year;
                     movieGenre.value = movie.Genre;
@@ -100,12 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     genre: movieGenre.value,
                     poster: moviePoster.src,
                 };
-
-                console.log(typeof movie.title);
-                console.log(typeof movie.year);
-                console.log(typeof movie.imdbRating);
-                console.log(typeof movie.genre);
-                console.log(typeof movie.poster);
 
                 const response = await axios.post('/movies', movie);
                 if (response.status === 200) {
