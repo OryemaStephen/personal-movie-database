@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function searchMovies() {
         const searchTextValue = searchText.value;
-        if (searchTextValue.length < 3) {
+        if (searchTextValue.length < 1) {
             document.getElementById('search-results').innerHTML = '';
             return;
         }
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         movies.forEach(movie => {
             const listItem = document.createElement('li');
-            listItem.textContent = movie.Title;
+            listItem.textContent = `${movie.Title}-${movie.Year}`;
             listItem.onclick = () => selectMovie(movie.imdbID);
             searchResults.appendChild(listItem);
         });
