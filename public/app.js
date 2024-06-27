@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initialNavState();
     window.addEventListener('resize', initialNavState);
 
+    //Add year in footer
     const year = document.getElementById('year');
     if (year) {
         const date = new Date();
@@ -141,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const response = await axios.post('/movies', movie);
             if (response.status === 200) {
-                alert('Movie added to database successfully');
+                alert('Movie added successfully');
                 clearForm();
                 window.location.href = '/index.html';
             } else {
