@@ -220,7 +220,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                     movieList.appendChild(movieItem);
                 });
+                //Load delete function
                 deleteItem();
+                //Hide load button
+                loadMovieButton.style.display = 'none';
             } else {
                 alert('Error fetching movies');
             }
