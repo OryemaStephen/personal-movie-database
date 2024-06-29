@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initialNavState();
     window.addEventListener('resize', initialNavState);
 
-    //Add year in footer
+    // Add year in footer
     const year = document.getElementById('year');
     if (year) {
         const date = new Date();
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if(searchText){
+    if (searchText) {
         searchText.addEventListener('input', searchMovies);
     }
 
@@ -127,14 +127,40 @@ document.addEventListener('DOMContentLoaded', () => {
         moviePoster.style.display = 'none';
     }
 
+    // Function to check if a movie exists in the database
+    async function checkMovieExists(title, year) {
+        try {
+            const response = await axios.get('/movies');
+            if (response.status === 200) {
+                const movies = response.data;
+                return movies.some(movie => movie.title === title && movie.year === year);
+            } else {
+                throw new Error('Error fetching movies');
+            }
+        } catch (error) {
+            console.error('Error checking movie existence:', error);
+            return false;
+        }
+    }
+
     // Add movie to the database
     addMovieButton?.addEventListener('click', async function addMovie(event) {
-        event.preventDefault(); 
+        event.preventDefault();
+
+        const title = movieTitle.value;
+        const year = movieYear.value;
+
+        // Check if movie already exists
+        const exists = await checkMovieExists(title, year);
+        if (exists) {
+            alert('Movie already exists in the database');
+            return;
+        }
 
         try {
             const movie = {
-                title: movieTitle.value,
-                year: movieYear.value,
+                title: title,
+                year: year,
                 imdbRating: movieRating.value,
                 genre: movieGenre.value,
                 poster: moviePoster.src,
@@ -163,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await axios.get('/movies');
             if (response.status === 200) {
                 const movies = response.data;
-                movieList.innerHTML = ''; 
+                movieList.innerHTML = '';
                 movies.forEach((movie, index) => {
                     if (index < numberOfMovies) {
                         const movieItem = document.createElement('div');
@@ -178,7 +204,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     <button data-id="${movie.id}" type="button" class="delete-movie">Delete</button>
                                     <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                                 </div>
-                            </div>                        
+                            </div>
                         `;
                         movieList.appendChild(movieItem);
                     }
@@ -203,7 +229,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await axios.get('/movies');
             if (response.status === 200) {
                 const movies = response.data;
-                movieList.innerHTML = ''; 
+                movieList.innerHTML = '';
                 movies.forEach(movie => {
                     const movieItem = document.createElement('div');
                     movieItem.className = 'movie-item';
@@ -217,13 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <button data-id="${movie.id}" type="button" class="delete-movie">Delete</button>
                                 <span class="rating"><span>&#9733;</span> ${movie.imdbRating}</span>
                             </div>
-                        </div>                        
+                        </div>
                     `;
                     movieList.appendChild(movieItem);
                 });
-                //Load delete function
+                // Load delete function
                 deleteItem();
-                //Hide load button
+                // Hide load button
                 loadMovieButton.style.display = 'none';
             } else {
                 alert('Error fetching movies');
