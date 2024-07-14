@@ -65,6 +65,14 @@ strong{
     margin-bottom: 0;
 }
 
+.movie-about >div{
+    padding-bottom: 10px;
+}
+
+.movie-about >div>span{
+    font-size: 10px;
+}
+
 p{
     font-size: 10px;
 }

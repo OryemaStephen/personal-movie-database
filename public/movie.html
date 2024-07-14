@@ -29,6 +29,10 @@
             <div class="movie-about">
                 <h3>About the Movie</h3>
                 <p>Loading...</p>
+                <div>
+                    <span class="year"></span>
+                    <span class="runtime"></span>
+                </div>
                 <div class="movie-cast">
                     <div class="actor">
                         <h3>Actors</h3>
@@ -60,6 +64,8 @@
                     document.querySelector('.rating strong').textContent = movie.imdbRating;
                     document.querySelector('.cover').src = movie.Poster;
                     document.querySelector('.cover').alt = movie.Title;
+                    document.querySelector('.year').textContent = `Year: ${movie.Year}`;
+                    document.querySelector('.runtime').textContent =`Runtime: ${movie.Runtime}`;
                     document.querySelector('.movie-about p').textContent = movie.Plot;
                     const actors = movie.Actors.split(',').map(actor => `<p>${actor.trim()}</p>`).join('');
                     document.querySelector('.actor').innerHTML = `<h3>Actors</h3>${actors}`;
