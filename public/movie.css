@@ -1,0 +1,117 @@
+body{
+    background: #F1F5F9;
+    box-sizing: border-box;
+}
+
+.main{
+    background: #ffffff;
+    min-width: 300px;
+    max-width: 90%;
+    margin: auto;
+    height: fit-content;
+    margin:0 auto;
+    padding: 20px;
+    padding-top: 20px;
+    box-shadow: 4px 4px 8px 0 #c5c3c3;
+    border-radius: 10px;
+}
+
+.title{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.movie-title {
+    margin-bottom:0;
+}
+
+strong{
+    color: blue;
+}
+
+.rating{
+    font-size: 10px;
+}
+
+.genre{
+    color: rgb(39, 74, 213);
+    margin: 0;
+}
+
+.movie-details{
+    display: flex;
+    justify-content: flex-start;
+    align-items: start ;
+    gap: 10px;
+}
+
+.cover{
+    width: 120px;
+    height: 165px;
+    object-fit: cover;
+    outline: none;
+}
+
+.movie-about{
+    width: 100%;
+    height: fit-content;
+}
+.movie-about h3{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+p{
+    font-size: 10px;
+}
+
+h3{
+    font-size: 12px;
+}
+
+.movie-cast{
+    display: flex;
+    justify-content: flex-start;
+    gap: 30px;
+}
+
+.movie-cast p{
+    margin: 2px;
+    color: rgb(39, 74, 213);
+}
+
+.actor{
+    padding-bottom: 10px;
+}
+
+.more{
+    font-size: 10px;
+}
+
+#btn-container {
+    width: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+.watch-btn{
+    width: 80px;
+    font-size: 7px;
+    background: #000000;
+    color: #ffffff;
+    border-radius: 20px;
+    padding: 5px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+}
+
+.watch-btn:hover{
+    background-color: #4c4c4c;
+    color: #ffffff;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-n5QKnWi78CEmvdGQa8P/qvfYIGD89Y4fGzP9Z5BSGbpRsTuJ6cNBlJyLUf2vF8u+XmwPfC9nqlQuZT0caEG0aw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="movie.css">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>Movie Card</title>
+</head>
+
+<body class="bg-[#181028] flex justify-center items-center min-h-screen">
+    <div class="main">
+        <button class="go-back" onclick="history.back()">Go Back</button>
+        <div class="title">
+            <div>
+                <h2 class="movie-title">Loading...</h2>
+                <p class="genre">Loading...</p>
+            </div>
+            <span class="rating"><strong>0.0</strong>/10</span>
+        </div>
+        <div class="movie-details">
+            <div class="movie-cover">
+                <img class="cover" src="" alt="Cover Photo">
+            </div>
+            <div class="movie-about">
+                <h3>About the Movie</h3>
+                <p>Loading...</p>
+                <div class="movie-cast">
+                    <div class="actor">
+                        <h3>Actors</h3>
+                        <p>Loading...</p>
+                    </div>
+                    <div class="director">
+                        <div>
+                            <h3>Director</h3>
+                            <p>Loading...</p>
+                        </div>
+                        <div>
+                            <h3>Screenwriter</h3>
+                            <p>Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        async function getMovieDetails(movieTitle) {
+            try {
+                const response = await axios.get(`https://www.omdbapi.com/?t=${encodeURIComponent(movieTitle)}&apikey=6698f446`);
+                if (response.data && response.data.Response === 'True') {
+                    const movie = response.data;
+                    document.querySelector('.movie-title').textContent = movie.Title;
+                    document.querySelector('.genre').textContent = movie.Genre;
+                    document.querySelector('.rating strong').textContent = movie.imdbRating;
+                    document.querySelector('.cover').src = movie.Poster;
+                    document.querySelector('.cover').alt = movie.Title;
+                    document.querySelector('.movie-about p').textContent = movie.Plot;
+                    const actors = movie.Actors.split(',').map(actor => `<p>${actor.trim()}</p>`).join('');
+                    document.querySelector('.actor').innerHTML = `<h3>Actors</h3>${actors}`;
+                    document.querySelector('.director div:first-child p').textContent = movie.Director;
+                    document.querySelector('.director div:last-child p').textContent = movie.Writer;
+                } else {
+                    alert('Error fetching movie details');
+                }
+            } catch (error) {
+                alert('Error fetching movie details: ' + error);
+            }
+        }
+
+        // Get the movie title from the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const movieTitle = urlParams.get('t');
+        if (movieTitle) {
+            getMovieDetails(movieTitle);
+        } else {
+            alert('No movie title provided');
+        }
+    </script>
+</body>
+
+</html>

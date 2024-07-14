@@ -208,6 +208,9 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                             </div>
                         `;
+                        movieItem.addEventListener('click', () => {
+                            window.location.href = `movie.html?t=${encodeURIComponent(movie.title)}`;
+                        });
                         movieList.appendChild(movieItem);
                     }
                 });
@@ -249,6 +252,9 @@ document.addEventListener('DOMContentLoaded', () => {
                             </div>
                         </div>
                     `;
+                    movieItem.addEventListener('click', () => {
+                        window.location.href = `movie.html?t=${encodeURIComponent(movie.title)}`;
+                    });
                     movieList.appendChild(movieItem);
                 });
                 // Load delete function
