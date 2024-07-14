@@ -195,7 +195,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         const movieItem = document.createElement('div');
                         movieItem.className = 'movie-item';
                         movieItem.innerHTML = `
-                            <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                            <div class="poster-div">
+                                <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                            </div>
                             <div class="movie-details">
                                 <h3 class="title">${movie.title}</h3>
                                 <div class="movie-label">
@@ -234,7 +236,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     const movieItem = document.createElement('div');
                     movieItem.className = 'movie-item';
                     movieItem.innerHTML = `
-                        <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                        <div class="poster-div">
+                            <img class="poster" src="${movie.poster}" alt="${movie.title}">
+                        </div>
                         <div class="movie-details">
                             <h3 class="title">${movie.title}</h3>
                             <div class="movie-label">

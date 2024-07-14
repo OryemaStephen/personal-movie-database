@@ -264,6 +264,14 @@ img#movie-poster {
     box-sizing: border-box;
     padding: 10px;
     overflow: hidden;
+    cursor: pointer;
+}
+
+.poster-div{
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
 }
 
 .poster {
@@ -276,7 +284,7 @@ img#movie-poster {
 }
 
 .movie-item:hover .poster {
-    transform: scale(1.02);
+    transform: scale(1.2);
 }
 
 .movie-details {
